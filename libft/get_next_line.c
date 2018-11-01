@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 13:31:03 by otahirov          #+#    #+#             */
-/*   Updated: 2018/10/15 12:42:17 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/01 12:50:31 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,3 @@ int		get_next_line(const int fd, char **line)
 		str_array[2] = ft_strappend(str_array[2], str_array[0], AA1, AA2);
 	return (ft_free(str_array, ft_copy(&line, str_array, list[1]), str_read));
 }
-

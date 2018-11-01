@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_gnlnew.c                                        :+:      :+:    :+:   */
+/*   ft_scanint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/16 20:09:18 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/01 12:51:01 by otahirov         ###   ########.fr       */
+/*   Created: 2018/11/01 12:37:31 by otahirov          #+#    #+#             */
+/*   Updated: 2018/11/01 12:50:13 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include "libft.h"
 
-t_gnl	*ft_gnlnew(char const *content)
-{
-	t_gnl	*new;
+/*
+** Makes an int from string of digits
+** Stops at the first non digit value
+** Takes in address to the pointer to increment throught the string
+*/
 
-	new = (t_gnl *)malloc(sizeof(*new));
-	if (new == NULL)
-		return (NULL);
-	new->next = NULL;
-	if (content == NULL)
+int		ft_scanint(char **str)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = ft_strnew(ft_strlen(*str));
+	while (ft_isdigit(**str) && **str)
 	{
-		new->content = NULL;
-		return (new);
+		tmp[i++] = **str;
+		*str++;
 	}
-	new->content = (char *)malloc(ft_strlen(content));
-	if (new->content == NULL)
-		return (NULL);
-	ft_memcpy(new->content, content, ft_strlen(content));
-	return (new);
+	return (ft_atoi(tmp));
 }

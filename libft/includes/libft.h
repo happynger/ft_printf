@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:02:50 by otahirov          #+#    #+#             */
-/*   Updated: 2018/10/15 12:41:47 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/01 12:51:17 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,6 @@ void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void					ft_lstaddend(t_list **alst, t_list *new);
 int						ft_strncmp(const char *s1, const char *s2, size_t n);
+int						ft_scanint(char **str);
 
 #endif
-

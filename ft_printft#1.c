@@ -1,24 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_gnladdend.c                                     :+:      :+:    :+:   */
+/*   ft_printft#1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/26 14:59:48 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/01 12:50:57 by otahirov         ###   ########.fr       */
+/*   Created: 2018/10/28 18:29:52 by otahirov          #+#    #+#             */
+/*   Updated: 2018/10/28 18:30:36 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_gnladdend(t_gnl **alst, t_gnl *new)
-{
-	t_gnl		*list;
-
-	list = *alst;
-	while (list->next != NULL)
-		list = list->next;
-	list->next = new;
-}
