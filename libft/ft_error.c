@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/11 17:59:26 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/16 11:10:28 by otahirov         ###   ########.fr       */
+/*   Created: 2018/11/01 14:25:33 by otahirov          #+#    #+#             */
+/*   Updated: 2018/11/01 14:26:08 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
-int		ft_putchar(char c)
+void		ft_error(char *msg)
 {
-	write(1, &c, 1);
-	return (1);
+	if (msg != NULL)
+		ft_putstr(msg);
+	exit(1);
 }

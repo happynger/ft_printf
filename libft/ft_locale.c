@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_locale.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/11 17:59:26 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/16 11:10:28 by otahirov         ###   ########.fr       */
+/*   Created: 2018/11/01 14:20:01 by otahirov          #+#    #+#             */
+/*   Updated: 2018/11/01 15:03:14 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
+#include <locale.h>
+#include <stdarg.h>
 
-int		ft_putchar(char c)
+void	ft_locale(const char *new_locale,
+					void (*subroutine)(),
+					va_list ap, char flag)
 {
-	write(1, &c, 1);
-	return (1);
+	char	*old_locale;
+	char	*saved_locale;
+
+	old_locale = setlocale(LC_ALL, NULL);
+	saved_locale = ft_strdup(old_locale);
+	if (saved_locale == NULL)
+		ft_error("Out of Memory");
+	setlocale(LC_ALL, new_locale);
+	(*subroutine)(ap, flag);
+	setlocale(LC_ALL, saved_locale);
+	free(saved_locale);
 }

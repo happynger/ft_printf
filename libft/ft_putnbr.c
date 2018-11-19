@@ -6,24 +6,19 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 09:26:08 by otahirov          #+#    #+#             */
-/*   Updated: 2018/09/16 22:28:20 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/18 18:34:40 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(long i)
+int		ft_putnbr(long i)
 {
-	if (i < 0)
-	{
-		ft_putchar('-');
-		i = -i;
-	}
-	if (i >= 10)
-	{
-		ft_putnbr(i / 10);
-		ft_putchar(i % 10 + '0');
-	}
-	if (i < 10)
-		ft_putchar(i % 10 + '0');
+	char 	*str;
+	int		nb;
+	
+	str = ft_itoa((intmax_t)i, 10, false);
+	nb = ft_putstr(str);
+	ft_strdel(&str);
+	return (nb);
 }
