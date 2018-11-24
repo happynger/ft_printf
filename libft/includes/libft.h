@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:02:50 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/18 18:35:29 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/23 16:50:34 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <libc.h>
 # include <limits.h>
 # include <stdarg.h>
+# include <stdbool.h>
 
 # ifndef TRUE
 #  define TRUE 1
@@ -91,6 +92,7 @@ void					ft_putnbr_fd(long n, int fd);
 char					*ft_strappend(char *dst, const char *src,
 						size_t dst_len, size_t src_len);
 size_t					ft_strlen(const char *s);
+size_t					ft_strlenc(const char *str, const char c);
 char					*ft_strdup(const char *s1);
 char					*ft_strchr(const char *s, int c);
 int						ft_strcmp(const char *s1, const char *s2);
@@ -144,9 +146,6 @@ int						ft_isascii(int c);
 char					*ft_getenv(const char *name);
 char					*ft_pathcombine(char *p);
 void					ft_error(char *msg);
-void					ft_locale(const char *new_locale,
-						void (*subroutine)(va_list ap, char flag),
-						va_list ap, char flag);
 /*
 **	LISTS
 */

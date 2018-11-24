@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_scanint.c                                       :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/01 12:37:31 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/20 15:56:02 by otahirov         ###   ########.fr       */
+/*   Created: 2018/11/20 16:23:36 by otahirov          #+#    #+#             */
+/*   Updated: 2018/11/20 16:24:39 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
-/*
-** Makes an int from string of digits
-** Stops at the first non digit value
-** Takes in address to the pointer to increment throught the string
-*/
-
-int		ft_scanint(char **str)
+typedef struct				s_printf_table
 {
-	char	*tmp;
-	int		i;
+	char					flag;
+	void					(*func)(va_list ap, char fg);
+}							t_printf_table;
 
-	i = 0;
-	tmp = ft_strnew(ft_strlen(*str));
-	while (ft_isdigit(**str) && **str)
-	{
-		tmp[i++] = **str++;
-	}
-	return (ft_atoi(tmp));
-}
+typedef union				u_floating
+{
+	float					f;
+	double					d;
+	long double				ld;
+}							t_floating;
+
+#endif // STRUCTS_H

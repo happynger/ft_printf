@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:54:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/18 18:44:35 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/23 17:40:20 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,17 @@ static intmax_t	pulldata(va_list ap)
 		uc = (unsigned int)va_arg(ap, int);
 		input = (intmax_t)uc;
 	}
+	else
+		input = (intmax_t)va_arg(ap, int);
 	return (input);
 }
 
-void			print_i(va_list ap, char fg)
+char			*print_i(va_list ap, char fg, char *ret, size_t *s)
 {
 	intmax_t	input;
 	int			base;
 	char		*str;
+	int			ln;
 
 	base = 10;
 	if (fg == 'o')
@@ -52,11 +55,14 @@ void			print_i(va_list ap, char fg)
 		base = 2;
 	input = pulldata(ap);
 	str = (ft_isupper(fg)) ? (FT_ITOA(true)) : (FT_ITOA(false));
-	g_bytes += ft_putstr(str);
+	ln = ft_strlen(str);
+	g_bytes += ln;
+	ft_strappend(ret, str, ln, *s);
+	*s += ln;
 	ft_strdel(&str);
 }
 
-void			print_u(va_list ap, char fg)
+char			*print_u(va_list ap, char fg, char *ret)
 {
 	uintmax_t	uinput;
 	
@@ -66,7 +72,7 @@ void			print_u(va_list ap, char fg)
 	g_bytes += ft_putnbr((long)uinput);
 }
 
-void			print_p(va_list ap, char fg)
+char			*print_p(va_list ap, char fg, char *ret)
 {
 	void	*ptr;
 	char	*str;
@@ -82,7 +88,7 @@ void			print_p(va_list ap, char fg)
 	ft_strdel(&str);
 }
 
-void			print_s(va_list ap, char fg)
+char			*print_s(va_list ap, char fg, char *ret)
 {
 	char	*str;
 	char	c;

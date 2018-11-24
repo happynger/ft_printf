@@ -6,12 +6,11 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:42:37 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/18 17:53:33 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/20 15:53:30 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdbool.h>
 
 static int		ft_logic(char *str, int i, long long *l, bool *isnegative)
 {
