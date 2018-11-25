@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:41:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/24 20:16:00 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/24 21:05:34 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*prec(char *ret)
 	return (ret);
 }
 
-static char	*field(char *ret)
+static char	*field(char *ret, char sign)
 {
 	int		ln;
 	char	c;
@@ -63,11 +63,13 @@ static char	*field(char *ret)
 		t = ft_strjoin(ret, str);
 	else
 		t = ft_strjoin(str, ret);
+	if (sign)
+		t[0] = sign;
 	ft_strdel(&str);
 	return (t);
 }
 
-static char	*flags(char *ret)
+static char	*flags(char *ret, char *sign)
 {
 	char	*t[3];
 
@@ -88,19 +90,20 @@ static char	*flags(char *ret)
 	}
 	INIT_TEMP(t[1]);
 	t[2] = (ALLR(g_conv)) ? ft_strcat(ret, t[0]) : ft_strjoin(t[0], ret);
-	ret = ft_strjoin(t[1], t[2]);
-	ft_strdel(&t[2]);
+	*sign = *t[1];
 	ft_strdel(&t[0]);
 	ft_strdel(&t[1]);
-	return (ret);
+	return (t[2]);
 }
 
 void		post(char *ret)
 {
-	ret = flags(ret);
+	char	sign;
+
+	ret = flags(ret, &sign);
 	if (REAL_F(g_conv) || g_conv == 'F')
 		ret = prec(ret);
-	ret = field(ret);
+	ret = field(ret, sign);
 	ft_putstr(ret);
 	ft_strdel(&ret);
 }
