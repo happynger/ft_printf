@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:47:33 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/24 19:48:02 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/25 14:32:02 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,19 @@ static long			afterpointCalc(long double nb)
 		nb *= 10;
 		ln++;
 		inb = (int)nb;
-		if (ln >= 10)
-			return (-1);
+		if (ln >= g_prec * 2)
+			break ;
 	}
 	return (ln);
 }
+
+#include <stdio.h>
 
 char				*print_f(va_list ap, char fg, char *ret, size_t *s)
 {
 	int			iIn;
 	long double	fIn;
-	char		*str;
+	char		*str[2];
 	long		ln;
 
 	if (fg != 'f' && fg != 'F' && fg != 'e' && fg != 'E')
@@ -58,14 +60,18 @@ char				*print_f(va_list ap, char fg, char *ret, size_t *s)
 	fIn = pullFloat(ap);
 	iIn = (int)fIn;
 	fIn -= (float)iIn;
-	str = ft_itoa((intmax_t)iIn, 10, false);
-	//?if((ln = afterpointCalc(fIn.ld)) == -1)
+	ret = ft_itoa((intmax_t)iIn, 10, false);
 	ln = afterpointCalc(fIn);
-	if (g_flags[4])
+	if ((g_flags[4] && g_prec == 0) || g_prec > 0)
 	{
-		//TODO: ADD TO STR THE '.'
-		//TODO: ADD ALL OF THE after. NUMBERS
+		str[0] = ft_strjoin(ret, ".");
+		iIn = (int)(fIn * ft_pow(10, (int)ln));
+		ft_strdel(&ret);
+		str[1] = ft_itoa((intmax_t)iIn, 10, false);
+		ret = ft_strjoin(str[0], str[1]);
+		*s += ft_strlen(ret);
+		ft_strdel(&str[1]);
+		ft_strdel(&str[0]);
 	}
-	*s += 0;
 	return (ret);
 }

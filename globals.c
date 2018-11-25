@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 16:32:48 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/24 16:46:54 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/25 13:29:56 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,3 +80,19 @@ t_printf_table				g_table[] =
 	{'p', &print_p},
 	{'n', &print_i}
 };
+
+void	reset_glob(void)
+{
+	int		i;
+
+	i = 0;
+	g_bytes = 0;
+	g_prec = 6;
+	g_conv = 0;
+	g_field = 0;
+	while (i < G_LENMOD)
+		g_lenmod[i++] = false;
+	i = 0;
+	while (i < G_FLAGS)
+		g_flags[i++] = false;
+}

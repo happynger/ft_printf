@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strnjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/13 13:07:23 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/25 13:22:06 by otahirov         ###   ########.fr       */
+/*   Created: 2018/09/15 09:51:18 by otahirov          #+#    #+#             */
+/*   Updated: 2018/11/25 14:45:12 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+char	*ft_strnjoin(char const *s1, char const *s2, size_t ln)
 {
-	int				res;
-	int				sign;
+	char	*str;
+	int		i;
 
-	if (*str == '\0' || *str == '\e')
-		return (0);
-	while (*str <= ' ' && *str != '\200')
-		str++;
-	res = 0;
-	sign = 1;
-	if (str[0] == '-')
-	{
-		str++;
-		sign = -1;
-	}
-	else if (str[0] == '+')
-		str++;
-	while (*str && ft_isdigit(*str))
-	{
-		res = ((res * 10) + (*str - '0'));
-		str++;
-	}
-	return (res * sign);
+	if (!s1 || !s2)
+		return (NULL);
+	str = ft_strnew(ft_strlen(s1) + ft_strlen(s2) + 1);
+	i = 0;
+	if (str == NULL)
+		return (NULL);
+	while (*s1)
+		str[i++] = *s1++;
+	while (*s2 && ln-- > 0)
+		str[i++] = *s2++;
+	return (str);
 }

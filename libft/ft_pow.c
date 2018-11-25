@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/13 13:07:23 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/25 13:22:06 by otahirov         ###   ########.fr       */
+/*   Created: 2018/11/25 13:42:41 by otahirov          #+#    #+#             */
+/*   Updated: 2018/11/25 14:40:16 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+intmax_t	ft_pow(int a, int pw)
 {
-	int				res;
-	int				sign;
+	intmax_t	result;
 
-	if (*str == '\0' || *str == '\e')
-		return (0);
-	while (*str <= ' ' && *str != '\200')
-		str++;
-	res = 0;
-	sign = 1;
-	if (str[0] == '-')
+	if (pw == 0)
+		return (1);
+	result = a;
+	while (pw > 1)
 	{
-		str++;
-		sign = -1;
+		result *= a;
+		pw--;
 	}
-	else if (str[0] == '+')
-		str++;
-	while (*str && ft_isdigit(*str))
-	{
-		res = ((res * 10) + (*str - '0'));
-		str++;
-	}
-	return (res * sign);
+	return (result);
 }

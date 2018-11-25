@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:02:50 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/24 19:35:08 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/25 14:42:43 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char					*ft_itoa(intmax_t nb, int base, bool is_cap);
 char					*ft_uitoa(uintmax_t nb, int base, bool is_cap);
 size_t					ft_intlen(long nb);
 int						ft_atoi(const char *str);
+intmax_t				ft_pow(int a, int pw);
 /*
 **	MEMORY
 */
@@ -116,6 +117,7 @@ int						ft_strnequ(char const *s1, char const *s2, size_t n);
 char					*ft_strsub(char const *s,
 						unsigned int start, size_t len);
 char					*ft_strjoin(char const *s1, char const *s2);
+char					*ft_strnjoin(char const *s1, char const *s2, size_t ln);
 char					*ft_strtrim(char const *s);
 char					**ft_strsplit(char const *s, char c);
 char					*ft_strcat(char *s1, const char *s2);

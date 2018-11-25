@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:41:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/24 21:05:34 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/25 14:43:16 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static char	*prec(char *ret)
 
 	i = 0;
 	SKIPTOC(ret, '.', i);
+	i++;
 	ln = (int)ft_strlen(ret + i);
 	if (ln < g_prec)
 	{
@@ -40,7 +41,7 @@ static char	*prec(char *ret)
 		t[ln] += ((t[ln + 1] - '0') >= 5) ? (1) : (0);
 		ret = ft_realloc(ret, ft_strlen(ret), (size_t)i);
 	}
-	ret = ft_strjoin(ret, t);
+	ret = ft_strnjoin(ret, t, ln);
 	ft_strdel(&t);
 	return (ret);
 }
@@ -104,6 +105,6 @@ void		post(char *ret)
 	if (REAL_F(g_conv) || g_conv == 'F')
 		ret = prec(ret);
 	ret = field(ret, sign);
-	ft_putstr(ret);
+	g_bytes += ft_putstr(ret);
 	ft_strdel(&ret);
 }

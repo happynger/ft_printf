@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:08:04 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/24 20:12:42 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/25 13:35:15 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ static void	ft_lenmods(const char **form)
 		g_lenmod[5] = true;
 }
 
+static void	multidigitnb(const char **form, bool isfield)
+{
+	if (isfield)
+	{
+		g_field = ft_atoi(*form);
+		*form += (ft_intlen(g_field) - 1);
+	}
+	else
+	{
+		g_prec = ft_atoi(*form);
+		*form += (ft_intlen(g_prec) - 1);
+	}
+}
+
 static void	ft_conv(const char **form, va_list ap)
 {
 	size_t	ln;
@@ -74,22 +88,6 @@ static void	ft_conv(const char **form, va_list ap)
 		while (ln < TABLE_SIZE)
 			if (g_table[ln++].flag == **form)
 				post(g_table[ln - 1].func(ap, **form, ret, &size));
-}
-
-static void	reset_glob(void)
-{
-	int		i;
-
-	i = 0;
-	g_bytes = 0;
-	g_prec = 6;
-	g_conv = 0;
-	g_field = 0;
-	while (i < G_LENMOD)
-		g_lenmod[i++] = false;
-	i = 0;
-	while (i < G_FLAGS)
-		g_flags[i++] = false;
 }
 
 /*

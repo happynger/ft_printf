@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:07:55 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/24 20:06:13 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/25 13:35:12 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@
 # define ALLR(x) ((REAL_F(x) || x == 'F') && g_prec == 0)
 # define NEG(x, i) ((ft_atoi(x) >= 0) && g_flags[i])
 
-# define CHK_DIGIT(x, b) (ft_isdigit(**x) && g_flags[6] != b && g_field == 0)
-# define CHK_DGIT(x, b) (ft_isdigit(**x) && g_flags[6] != b && g_prec == 0)
+# define CHK_DIGIT(x) (ft_isdigit(**x) && g_flags[6] == false && g_field == 0)
+# define CHK_DGIT(x) (ft_isdigit(**x) && g_flags[6] == true && g_prec == 6)
 # define CHK_FLAGS(r) if (!g_flags[1] && !g_flags[3] && !g_flags[4]) return (r)
 
 # define INIT_FLAGS(x) if (FLAGS(**x)) ft_flags(x)
 # define INIT_VARFIELD(x, ap) else if (**x == '*') g_field = va_arg(ap, int)
-# define INIT_FIELD(x) else if (CHK_DIGIT(x, true)) g_field = ft_atoi(*x)
+# define INIT_FIELD(x) else if (CHK_DIGIT(x)) multidigitnb(x, true)
 # define INIT_DOT(x) else if (**x == '.') g_flags[6] = true
 # define INIT_VARPREC(x, ap) else if (**x == '*') g_prec = va_arg(ap, int)
-# define INIT_PREC(x) else if (CHK_DIGIT(x, false)) g_prec = ft_atoi(*x)
+# define INIT_PREC(x) else if (CHK_DGIT(x)) multidigitnb(x, false)
 # define INIT_LENMOD(x) else if (LENMOD(**x)) ft_lenmods(x)
 # define INIT_CONV(x) if (CONV(**x)) g_conv = **x
 # define INIT_TEMP(t) else t = ft_strdup("")
@@ -61,5 +61,6 @@ void						ft_error(char *msg);
 int							color(const char *input);
 void						post(char *ret);
 int							ft_printf(const char *format, ...);
+void						reset_glob(void);
 
 #endif
