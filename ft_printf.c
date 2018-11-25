@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:08:04 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/20 17:09:35 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/24 20:12:42 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void ft_flags(const char **form)
 		g_flags[1] = true;
 	else if (**form == '0')
 		g_flags[2] = true;
-	else if (**form == ' ' && g_flags[2] != true)
+	else if (**form == ' ')
 		g_flags[3] = true;
 	else if (**form == '#')
 		g_flags[4] = true;
@@ -50,32 +50,30 @@ static void	ft_lenmods(const char **form)
 
 static void	ft_conv(const char **form, va_list ap)
 {
-	char	*field;
 	size_t	ln;
+	size_t	size;
+	char	*ret;
 
 	ln = 0;
-	field = ft_strnew(10);
+	size = 0;
+	ret = ft_strnew(size + 1);
 	while (**form && !CONV(**form))
 	{
-		if (FLAGS(**form))
-			ft_flags(form);
-		else if (**form == '*')
-			g_flags[5] = true;
-		else if (ft_isdigit(**form) && g_flags[6] != true)
-			field[ln++] = **form;
-		else if (**form == '.')
-			g_flags[6] = true;
-		else if (ft_isdigit(**form) && g_flags[6] == true)
-			g_precision = ft_scanint((char **)form);
-		else if (LENMOD(**form))
-			ft_lenmods(form);
+		INIT_FLAGS(form);
+		INIT_VARFIELD(form, ap);
+		INIT_FIELD(form);
+		INIT_DOT(form);
+		INIT_VARPREC(form, ap);
+		INIT_PREC(form);
+		INIT_LENMOD(form);
 		*form += 1;
 	}
 	ln = 0;
+	INIT_CONV(form);
 	if (CONV(**form))
 		while (ln < TABLE_SIZE)
 			if (g_table[ln++].flag == **form)
-				g_table[ln - 1].func(ap, **form);
+				post(g_table[ln - 1].func(ap, **form, ret, &size));
 }
 
 static void	reset_glob(void)
@@ -84,7 +82,9 @@ static void	reset_glob(void)
 
 	i = 0;
 	g_bytes = 0;
-	g_precision = 0;
+	g_prec = 6;
+	g_conv = 0;
+	g_field = 0;
 	while (i < G_LENMOD)
 		g_lenmod[i++] = false;
 	i = 0;

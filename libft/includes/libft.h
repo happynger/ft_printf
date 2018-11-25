@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:02:50 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/23 16:50:34 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/24 19:35:08 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct			s_list
 **	INT
 */
 char					*ft_itoa(intmax_t nb, int base, bool is_cap);
+char					*ft_uitoa(uintmax_t nb, int base, bool is_cap);
 size_t					ft_intlen(long nb);
 int						ft_atoi(const char *str);
 /*

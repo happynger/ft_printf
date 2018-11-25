@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 16:32:48 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/20 17:00:14 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/24 16:46:54 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** flag # 2 : '0'
 ** flag # 3 : ' '
 ** flag # 4 : '#'
-** flag # 5 : '*' for field_width
+** flag # 5 : EMPTY
 ** flag # 6 : '.' for precision
 */
 
@@ -52,11 +52,13 @@ bool						g_lenmod[] =
 	false
 };
 
-int							g_precision = 0;
+int							g_prec = 0;
 
 int							g_bytes = 0;
 
-char						*g_result;
+int							g_field = 0;
+
+char						g_conv = 0;
 
 t_printf_table				g_table[] =
 {

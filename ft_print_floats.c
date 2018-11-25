@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:47:33 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/23 17:35:50 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/24 19:48:02 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ static long			afterpointCalc(long double nb)
 		nb *= 10;
 		ln++;
 		inb = (int)nb;
-		if (ln >= 100)
+		if (ln >= 10)
 			return (-1);
 	}
 	return (ln);
 }
 
-void				print_f(va_list ap, char fg)
+char				*print_f(va_list ap, char fg, char *ret, size_t *s)
 {
 	int			iIn;
 	long double	fIn;
@@ -54,17 +54,18 @@ void				print_f(va_list ap, char fg)
 	long		ln;
 
 	if (fg != 'f' && fg != 'F' && fg != 'e' && fg != 'E')
-		return ;
+		return (NULL);
 	fIn = pullFloat(ap);
 	iIn = (int)fIn;
 	fIn -= (float)iIn;
 	str = ft_itoa((intmax_t)iIn, 10, false);
 	//?if((ln = afterpointCalc(fIn.ld)) == -1)
-	if ((ln = afterpointCalc(fIn)) == -1)
-		
+	ln = afterpointCalc(fIn);
 	if (g_flags[4])
 	{
 		//TODO: ADD TO STR THE '.'
 		//TODO: ADD ALL OF THE after. NUMBERS
 	}
+	*s += 0;
+	return (ret);
 }
