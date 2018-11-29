@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:07:55 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/25 13:35:12 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/29 09:26:37 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define INIT_TEMP(t) else t = ft_strdup("")
 
 # define ADD_O(t) if (g_conv == 'o') t = ft_strdup("0")
-# define ADD_x(t) else if (g_conv == 'x') t = ft_strdup("0x")
+# define ADD_XS(t) else if (g_conv == 'x') t = ft_strdup("0x")
 # define ADD_X(t) else if (g_conv == 'X') t = ft_strdup("0X")
 # define ADD_F(t) else if (ALLR(g_conv)) t = ft_strdup(".")
 # define ADD_N(t) else t = ft_strdup("")

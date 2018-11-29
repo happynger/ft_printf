@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:41:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/25 14:43:16 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/29 09:26:57 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static char	*flags(char *ret, char *sign)
 	if (g_flags[4])
 	{
 		ADD_O(t[0]);
-		ADD_x(t[0]);
+		ADD_XS(t[0]);
 		ADD_X(t[0]);
 		ADD_F(t[0]);
 		ADD_N(t[0]);

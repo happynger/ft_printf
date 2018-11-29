@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:47:33 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/25 14:32:02 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/29 09:28:26 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 extern bool g_flags[];
 extern bool g_lenmod[];
 
-static long double	pullFloat(va_list ap)
+static long double	pullfloat(va_list ap)
 {
 	long double		input;
 
@@ -28,7 +28,7 @@ static long double	pullFloat(va_list ap)
 	return (input);
 }
 
-static long			afterpointCalc(long double nb)
+static long			afterpointcalc(long double nb)
 {
 	long		ln;
 	int			inb;
@@ -46,28 +46,26 @@ static long			afterpointCalc(long double nb)
 	return (ln);
 }
 
-#include <stdio.h>
-
 char				*print_f(va_list ap, char fg, char *ret, size_t *s)
 {
-	int			iIn;
-	long double	fIn;
+	int			iin;
+	long double	fin;
 	char		*str[2];
 	long		ln;
 
 	if (fg != 'f' && fg != 'F' && fg != 'e' && fg != 'E')
 		return (NULL);
-	fIn = pullFloat(ap);
-	iIn = (int)fIn;
-	fIn -= (float)iIn;
-	ret = ft_itoa((intmax_t)iIn, 10, false);
-	ln = afterpointCalc(fIn);
+	fin = pullfloat(ap);
+	iin = (int)fin;
+	fin -= (float)iin;
+	ret = ft_itoa((intmax_t)iin, 10, false);
+	ln = afterpointcalc(fin);
 	if ((g_flags[4] && g_prec == 0) || g_prec > 0)
 	{
 		str[0] = ft_strjoin(ret, ".");
-		iIn = (int)(fIn * ft_pow(10, (int)ln));
+		iin = (int)(fin * ft_pow(10, (int)ln));
 		ft_strdel(&ret);
-		str[1] = ft_itoa((intmax_t)iIn, 10, false);
+		str[1] = ft_itoa((intmax_t)iin, 10, false);
 		ret = ft_strjoin(str[0], str[1]);
 		*s += ft_strlen(ret);
 		ft_strdel(&str[1]);

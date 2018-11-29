@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:42:37 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/20 15:53:30 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/29 09:25:02 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char			*ft_itoa(intmax_t nb, int base, bool is_cap)
 	char		c;
 
 	l = nb;
-	c = (is_cap) ? (c = 'A') : (c = 'a');
+	c = (is_cap) ? ('A') : ('a');
 	str = ft_strnew(ft_intlen(l));
 	if (str == NULL)
 		return (NULL);

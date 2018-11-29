@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:54:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/24 19:44:18 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/29 09:29:17 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char			*print_u(va_list ap, char fg, char *ret, size_t *s)
 	uintmax_t	uinput;
 	char		*str;
 	int			ln;
-	
+
 	if (fg != 'u')
 		ft_error("Calls %u\n");
 	uinput = (uintmax_t)pulldata(ap);

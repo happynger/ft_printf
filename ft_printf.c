@@ -6,13 +6,13 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:08:04 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/25 13:35:15 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/29 09:23:58 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void ft_flags(const char **form)
+static void	ft_flags(const char **form)
 {
 	if (**form == '-')
 		g_flags[0] = true;
@@ -95,7 +95,7 @@ static void	ft_conv(const char **form, va_list ap)
 ** % [flags] [field_width] [.precision] [length_modifier] convertional_modifier
 */
 
-int		ft_printf(const char *format, ...)
+int			ft_printf(const char *format, ...)
 {
 	va_list		print;
 
