@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:07:55 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/30 12:53:56 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 15:28:26 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define INT_F(x) (x == 'i' || x == 'd' || x == 'o')
 # define INT_F2(x) (x == 'x' || x == 'X' || x == 'u')
 # define CHAR_F(x) (x == 'c' || x == 's')
-# define REAL_F(x) (x == 'e' || x == 'E' || x == 'f' || x == 'g' || x == 'G')
-# define MISC_F(x) (x == 'n' || x == 'p' || x == 'F' || x == 'b')
+# define REAL_F(x) (x == 'f')
+# define MISC_F(x) (x == 'n' || x == 'p' || x == 'F' || x == 'b' || x == '%')
 # define CONV(x) (INT_F(x) || INT_F2(x) || CHAR_F(x) || REAL_F(x) || MISC_F(x))
 # define FLAGS(x) (x == '-' || x == '+' || x == ' ' || x == '0' || x == '#')
 # define LENMD(x) (x == 'l' || x == 'h' || x == 'L')
@@ -39,7 +39,7 @@
 # define INIT_DOT(x) else if (**x == '.') g_flags[6] = true
 # define INIT_VARPREC(x, ap) else if (**x == '*') g_prec = va_arg(ap, int)
 # define INIT_PREC(x) else if (CHK_DGIT(x)) multidigitnb(x, false)
-# define INIT_LENMOD(x) else if (LENMOD(**x)) ft_lenmods(x)
+# define INIT_LENMOD(x) else if (LENMOD(**x)) *x += ft_lenmods((char *)*x)
 # define INIT_CONV(x) if (CONV(**x)) g_conv = **x
 # define INIT_TEMP(t) else t = ft_strdup("")
 
@@ -55,7 +55,7 @@
 # define SKIPTOC(x, c, i) while (x[i] != c && x[i]) i++
 
 # define MAXCOLORLEN 25
-# define TABLE_SIZE 18
+# define TABLE_SIZE 14
 
 void						ft_error(char *msg);
 int							color(const char *input);

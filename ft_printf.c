@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:08:04 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/30 11:57:19 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 15:23:11 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,27 @@ static void	ft_flags(const char **form)
 		g_flags[4] = true;
 }
 
-static void	ft_lenmods(const char **form)
+static int	ft_lenmods(char *form)
 {
-	if (**form == 'l' && **(form + 1) != 'l')
+	if (*form == 'l' && form[1] != 'l')
 		g_lenmod[0] = true;
-	else if (**form == 'l' && **(form + 1) == 'l')
+	else if (*form == 'l' && form[1] == 'l')
 	{
 		g_lenmod[1] = true;
-		*form += 1;
+		return (1);
 	}
-	else if (**form == 'h' && **(form + 1) != 'h')
+	else if (*form == 'h' && form[1] != 'h')
 		g_lenmod[2] = true;
-	else if (**form == 'h' && **(form + 1) == 'h')
+	else if (*form == 'h' && form[1] == 'h')
 	{
 		g_lenmod[3] = true;
-		*form += 1;
+		return (1);
 	}
-	else if (**form == 'L')
+	else if (*form == 'L')
 		g_lenmod[4] = true;
-	else if (**form == 'j')
+	else if (*form == 'j')
 		g_lenmod[5] = true;
+	return (0);
 }
 
 static void	multidigitnb(const char **form, bool isfield)
@@ -69,6 +70,7 @@ static void	ft_conv(const char **form, va_list ap)
 
 	ln = 0;
 	ret = ft_strnew(1);
+	*form += 1;
 	while (**form && !CONV(**form))
 	{
 		INIT_FLAGS(form);
@@ -102,15 +104,7 @@ int			ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format == '%')
-		{
-			if (*(format + 1) == '%')
-			{
-				g_bytes += ft_putchar('%');
-				format++;
-			}
-			else
-				ft_conv(&format, print);
-		}
+			ft_conv(&format, print);
 		else if (*format == '{')
 			format += color(format);
 		else
@@ -123,7 +117,7 @@ int			ft_printf(const char *format, ...)
 
 int main()
 {
-	ft_printf("%s", NULL);
+	ft_printf("%o\n", -42);
+	printf("%o\n", -42);
 	return 0;
 }
-

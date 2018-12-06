@@ -6,13 +6,13 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:42:37 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/29 09:25:02 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 15:40:58 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_logic(char *str, int i, long long *l, bool *isnegative)
+static int		ft_logic(char *str, int i, intmax_t *l, bool *isnegative)
 {
 	if (*l == 0)
 	{
@@ -32,7 +32,7 @@ char			*ft_itoa(intmax_t nb, int base, bool is_cap)
 {
 	bool		isnegative;
 	int			i[2];
-	long long	l;
+	intmax_t	l;
 	char		*str;
 	char		c;
 

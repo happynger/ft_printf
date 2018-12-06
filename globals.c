@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 16:32:48 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/30 12:54:15 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 15:37:40 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,10 @@ t_printf_table				g_table[] =
 	{'i', &print_i},
 	{'d', &print_i},
 	{'u', &print_u},
-	{'o', &print_i},
-	{'x', &print_i},
-	{'X', &print_i},
+	{'o', &print_u},
+	{'x', &print_u},
+	{'X', &print_u},
 	{'b', &print_i},
-	{'e', &print_f},
-	{'E', &print_f},
-	{'g', &print_f},
-	{'G', &print_f},
 	{'f', &print_f},
 	{'F', &print_f},
 	{'p', &print_p},
