@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:08:04 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/29 09:23:58 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/30 11:57:19 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,10 @@ static void	multidigitnb(const char **form, bool isfield)
 static void	ft_conv(const char **form, va_list ap)
 {
 	size_t	ln;
-	size_t	size;
 	char	*ret;
 
 	ln = 0;
-	size = 0;
-	ret = ft_strnew(size + 1);
+	ret = ft_strnew(1);
 	while (**form && !CONV(**form))
 	{
 		INIT_FLAGS(form);
@@ -87,7 +85,7 @@ static void	ft_conv(const char **form, va_list ap)
 	if (CONV(**form))
 		while (ln < TABLE_SIZE)
 			if (g_table[ln++].flag == **form)
-				post(g_table[ln - 1].func(ap, **form, ret, &size));
+				post(g_table[ln - 1].func(ap, **form, ret));
 }
 
 /*
@@ -122,3 +120,10 @@ int			ft_printf(const char *format, ...)
 	va_end(print);
 	return (g_bytes);
 }
+
+int main()
+{
+	ft_printf("%s", NULL);
+	return 0;
+}
+

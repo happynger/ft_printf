@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:07:55 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/29 09:26:37 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/30 12:53:56 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include "libft/includes/libft.h"
 # include "structs.h"
-# include "globals.h"
+
 # define INT_F(x) (x == 'i' || x == 'd' || x == 'o')
 # define INT_F2(x) (x == 'x' || x == 'X' || x == 'u')
 # define CHAR_F(x) (x == 'c' || x == 's')
@@ -55,12 +55,32 @@
 # define SKIPTOC(x, c, i) while (x[i] != c && x[i]) i++
 
 # define MAXCOLORLEN 25
-# define TABLE_SIZE 17
+# define TABLE_SIZE 18
 
 void						ft_error(char *msg);
 int							color(const char *input);
 void						post(char *ret);
 int							ft_printf(const char *format, ...);
 void						reset_glob(void);
+/*
+**	OUTPUTS
+*/
+char						*print_p(va_list ap, char fg, char *ret);
+char						*print_u(va_list ap, char fg, char *ret);
+char						*print_i(va_list ap, char fg, char *ret);
+char						*print_s(va_list ap, char fg, char *ret);
+char						*print_f(va_list ap, char fg, char *ret);
+char						*print_m(va_list ap, char fg, char *ret);
+
+# define G_LENMOD 6
+# define G_FLAGS 7
+
+extern bool				g_flags[];
+extern bool				g_lenmod[];
+extern int				g_prec;
+extern int				g_field;
+extern int				g_bytes;
+extern char				g_conv;
+extern t_printf_table	g_table[];
 
 #endif

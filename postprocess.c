@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:41:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/29 09:26:57 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:29:33 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	!!! PLUS SHOULD BE CHECKED BY FIELD!
 */
 
-static char	*prec(char *ret)
+static char	*precf(char *ret)
 {
 	int		i;
 	int		ln;
@@ -58,7 +58,7 @@ static char	*field(char *ret, char sign)
 		return (ret);
 	ln = g_field - ln;
 	CHECK_NULL((str = ft_strnew(ft_strlen(ret) + ln + 1)));
-	c = (g_flags[2]) ? ('0') : (' ');
+	c = (g_flags[2] && !g_flags[0]) ? ('0') : (' ');
 	str = (char *)ft_memset(str, c, ln);
 	if (g_flags[0])
 		t = ft_strjoin(ret, str);
@@ -97,12 +97,32 @@ static char	*flags(char *ret, char *sign)
 	return (t[2]);
 }
 
+char		*prec(char *ret)
+{
+	int		ln;
+	char	*t;
+
+	if (g_prec == 6)
+		return (ret);
+	if ((ln = ft_strlen(ret)) > g_prec)
+		ft_memset(ret + g_prec, 0, (ln - g_prec));
+	else if (ln < g_prec && g_conv == 'o')
+	{
+		CHECK_NULL((t = ft_strnew(g_prec - ln)));
+		ft_memset(t, '0', (g_prec - ln));
+		ft_strjoin(t, ret);
+	}
+	return (ret);
+}
+
 void		post(char *ret)
 {
 	char	sign;
 
 	ret = flags(ret, &sign);
 	if (REAL_F(g_conv) || g_conv == 'F')
+		ret = precf(ret);
+	else
 		ret = prec(ret);
 	ret = field(ret, sign);
 	g_bytes += ft_putstr(ret);

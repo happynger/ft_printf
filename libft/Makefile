@@ -6,27 +6,37 @@
 #    By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/10 16:03:49 by otahirov          #+#    #+#              #
-#    Updated: 2018/11/01 13:03:44 by otahirov         ###   ########.fr        #
+#    Updated: 2018/11/29 09:55:02 by otahirov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = libft.so
 
 SRC = *.c
 
-BIN = *.o
+CC=gcc
+LDFLAGS= -shared
+CFLAGS= -Wall -Wextra -Werror
 
-INC = -I ./includes
+BIN = $(SRC:.c=.o)
+
+INC = -I includes
 
 LOC? = ~/Programs/42/ft_gnl/libft
 
 all : $(NAME)
 
-$(NAME) : 
-		@gcc -Wall -Werror -Wextra -c $(SRC) $(INC)
-		@ar rc $(NAME) $(BIN)
-		@ranlib $(NAME)
-		@echo "Library Generated!"
+#$(NAME): $(BIN)
+#		@$(CC) $(CFLAGS) -c $(SRC) $(INC)
+#		@ar rc $(NAME) $(BIN)
+#		@ranlib $(NAME)
+#		@echo "Library Generated!"
+
+$(NAME): $(BIN)
+	$(CC) ${LDFLAGS} $(INC) -o $@ $^
+
+$(SRC:.c=.d): %.d:%.c
+	$(CC) $(CFLAGS) $(INC) -MM $< >$@
 
 clean :
 		@rm -f $(BIN)

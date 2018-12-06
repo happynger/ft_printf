@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:54:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/29 09:29:17 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/30 13:15:17 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static intmax_t	pulldata(va_list ap)
 	return (input);
 }
 
-char			*print_i(va_list ap, char fg, char *ret, size_t *s)
+char			*print_i(va_list ap, char fg, char *ret)
 {
 	intmax_t	input;
 	int			base;
@@ -54,16 +54,16 @@ char			*print_i(va_list ap, char fg, char *ret, size_t *s)
 	else if (fg == 'b')
 		base = 2;
 	input = pulldata(ap);
+	if (input == 0)
+		g_flags[4] = false;
 	str = (ft_isupper(fg)) ? (FT_ITOA(true)) : (FT_ITOA(false));
 	ln = ft_strlen(str);
-	g_bytes += ln;
-	ft_strappend(ret, str, *s, ln);
-	*s += ln;
+	ft_strappend(ret, str, 1, ln);
 	ft_strdel(&str);
 	return (ret);
 }
 
-char			*print_u(va_list ap, char fg, char *ret, size_t *s)
+char			*print_u(va_list ap, char fg, char *ret)
 {
 	uintmax_t	uinput;
 	char		*str;
@@ -74,14 +74,12 @@ char			*print_u(va_list ap, char fg, char *ret, size_t *s)
 	uinput = (uintmax_t)pulldata(ap);
 	str = ft_uitoa(uinput, 10, false);
 	ln = ft_strlen(str);
-	g_bytes += ln;
-	ft_strappend(ret, str, *s, ln);
-	*s += ln;
+	ft_strappend(ret, str, 1, ln);
 	ft_strdel(&str);
 	return (ret);
 }
 
-char			*print_p(va_list ap, char fg, char *ret, size_t *s)
+char			*print_p(va_list ap, char fg, char *ret)
 {
 	void		*ptr;
 	char		*str;
@@ -97,14 +95,12 @@ char			*print_p(va_list ap, char fg, char *ret, size_t *s)
 	ft_strdel(&str);
 	str = temp;
 	nb = ft_strlen(str);
-	ft_strappend(ret, str, *s, nb);
-	g_bytes += nb;
-	*s += nb;
+	ret = ft_strappend(ret, str, 1, nb);
 	ft_strdel(&str);
 	return (ret);
 }
 
-char			*print_s(va_list ap, char fg, char *ret, size_t *s)
+char			*print_s(va_list ap, char fg, char *ret)
 {
 	char	*str;
 	char	c;
@@ -113,17 +109,21 @@ char			*print_s(va_list ap, char fg, char *ret, size_t *s)
 	if (fg == 's')
 	{
 		str = va_arg(ap, char *);
+		if (str == NULL)
+			str = ft_strappend(str, "(null)", 1, 7);
 		ln = ft_strlen(str);
-		ft_strappend(ret, str, *s, ln);
-		g_bytes += ln;
-		*s += ln;
+		ret = ft_strappend(ret, str, 1, ln);
 	}
 	else if (fg == 'c')
 	{
 		c = va_arg(ap, int);
-		ft_strappend(ret, &c, *s, 1);
-		g_bytes += 1;
-		*s += 1;
+		if (c == 0)
+		{
+			ret = ft_strappend(ret, "^@", 1, 2);
+			g_bytes -= 1;
+		}
+		else
+			ret[0] = c;
 	}
 	return (ret);
 }

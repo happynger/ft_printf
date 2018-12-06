@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 16:23:36 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/24 19:43:32 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/29 13:39:10 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct	s_printf_table
 {
 	char		flag;
-	char		*(*func)(va_list ap, char fg, char *ret, size_t *s);
+	char		*(*func)(va_list ap, char fg, char *ret);
 }				t_printf_table;
 
 typedef union	u_floating

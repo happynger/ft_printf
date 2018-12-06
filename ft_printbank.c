@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_floats.c                                  :+:      :+:    :+:   */
+/*   ft_printbank.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:47:33 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/29 09:28:26 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/30 12:55:19 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-extern bool g_flags[];
-extern bool g_lenmod[];
 
 static long double	pullfloat(va_list ap)
 {
@@ -46,7 +43,7 @@ static long			afterpointcalc(long double nb)
 	return (ln);
 }
 
-char				*print_f(va_list ap, char fg, char *ret, size_t *s)
+char				*print_f(va_list ap, char fg, char *ret)
 {
 	int			iin;
 	long double	fin;
@@ -67,9 +64,22 @@ char				*print_f(va_list ap, char fg, char *ret, size_t *s)
 		ft_strdel(&ret);
 		str[1] = ft_itoa((intmax_t)iin, 10, false);
 		ret = ft_strjoin(str[0], str[1]);
-		*s += ft_strlen(ret);
 		ft_strdel(&str[1]);
 		ft_strdel(&str[0]);
+	}
+	return (ret);
+}
+
+char				*print_m(va_list ap, char fg, char *ret)
+{
+	int	*in;
+
+	if (fg == '%')
+		ret[0] = '%';
+	else if (fg == 'n')
+	{
+		in = va_arg(ap, int *);
+		*in = g_bytes;
 	}
 	return (ret);
 }

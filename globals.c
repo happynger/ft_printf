@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 16:32:48 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/25 13:29:56 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/11/30 12:54:15 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ t_printf_table				g_table[] =
 	{'f', &print_f},
 	{'F', &print_f},
 	{'p', &print_p},
-	{'n', &print_i}
+	{'%', &print_m},
+	{'n', &print_m}
 };
 
 void	reset_glob(void)
