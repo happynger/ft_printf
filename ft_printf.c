@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:08:04 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 17:14:17 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/07 14:15:10 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ int			ft_printf(const char *format, ...)
 	return (g_bytes);
 }
 
-int main()
+/* int main()
 {
-	ft_printf("%-+10.5d", 4242);
+	ft_printf("%-05d", -42);
 	return 0;
-}
+} */

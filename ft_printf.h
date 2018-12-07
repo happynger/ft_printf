@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:07:55 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 16:43:46 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/07 14:13:21 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 # define CHK_DIGIT(x) (ft_isdigit(**x) && g_flags[6] == false && g_field == 0)
 # define CHK_DGIT(x) (ft_isdigit(**x) && g_flags[6] == true && g_prec == 6)
 # define CHK_FLAGS(r) if (!g_flags[1] && !g_flags[3] && !g_flags[4]) return (r)
+# define CHK_SIGN(f) (f[0] || (f[3] && !f[2]) || (f[1] && !f[2]))
+# define CHK_RESIGN(f) (!f[0] && (f[2] || f[1]))
+# define CHK_S (!CHAR_F(g_conv) && g_conv != '%') && (g_flags[1] || g_flags[3])
+# define CHK_FIELD(r) ((int)ft_strlen(*r) < g_field && ft_strchr(*r, sign))
 
 # define INIT_FLAGS(x) if (FLAGS(**x) && !g_flags[6]) ft_flags(x)
 # define INIT_VARFIELD(x, ap) else if (**x == '*') g_field = va_arg(ap, int)

@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:41:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 17:34:49 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/07 14:13:52 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,32 @@ static void	precf(char **ret)
 	*ret = t[1];
 }
 
-static void	field(char **ret, char sign)
+static void	field(char **ret, char sign, char c)
 {
 	int		ln;
-	char	c;
 	char	*str;
-	char	*t;
+	char	*t[2];
 
-	if (sign && g_flags[0] && !g_flags[2])
-		ft_strshift(ret, 1, '+');
-	ln = (int)ft_strlen(*ret);
+	t[1] = *ret;
+	if (sign && CHK_SIGN(g_flags) && ft_strchr(*ret, sign) == NULL)
+		ft_strshift(ret, 1, sign);
+	if (sign && CHK_FIELD(ret) && g_flags[2] && !g_flags[0])
+		t[1]++;
+	ln = (int)ft_strlen(t[1]);
 	if (ln > g_field)
 		return ;
 	ln = g_field - ln;
-	str = ft_strnew(ft_strlen(*ret) + ln + 1);
-	c = (g_flags[2] && !g_flags[0]) ? ('0') : (' ');
+	str = ft_strnew(ft_strlen(t[1]) + ln + 1);
 	str = (char *)ft_memset(str, c, ln);
 	if (g_flags[0])
-		t = ft_strjoin(*ret, str);
+		t[0] = ft_strjoin(t[1], str);
 	else
-		t = ft_strjoin(str, *ret);
-	if (sign && g_flags[2])
-		ft_strshift(ret, 1, '+');
+		t[0] = ft_strjoin(str, t[1]);
+	if (sign && CHK_RESIGN(g_flags) && ft_strchr(t[0], sign) == NULL)
+		t[0][0] = sign;
 	ft_strdel(&str);
 	ft_strdel(ret);
-	*ret = t;
+	*ret = t[0];
 }
 
 static void	flags(char **ret, char *sign)
@@ -87,7 +88,7 @@ static void	flags(char **ret, char *sign)
 		ADD_N(t[0]);
 	}
 	INIT_TEMP(t[0]);
-	if ((g_conv != 's' || g_conv != 'c') && (g_flags[1] || g_flags[3]))
+	if ((CHK_S) || (g_flags[2] && ft_strchr(*ret, '-') != NULL))
 	{
 		ADD_P(t[1], *ret);
 		ADD_S(t[1], *ret);
@@ -125,13 +126,15 @@ void		prec(char **ret)
 void		post(char *ret)
 {
 	char	sign;
+	char	c;
 
 	flags(&ret, &sign);
 	if (REAL_F(g_conv) || g_conv == 'F')
 		precf(&ret);
 	else
 		prec(&ret);
-	field(&ret, sign);
+	c = (g_flags[2] && !g_flags[0]) ? ('0') : (' ');	
+	field(&ret, sign, c);
 	g_bytes += ft_putstr(ret);
 	ft_strdel(&ret);
 }
