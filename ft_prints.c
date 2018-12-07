@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:54:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 15:56:07 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 16:32:07 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,9 @@ char				*print_i(va_list ap, char fg, char *ret)
 	if (fg == 'b')
 		base = 2;
 	input = pulldata(ap);
-	if (input == 0)
-		g_flags[4] = false;
 	str = (ft_isupper(fg)) ? (FT_ITOA(true)) : (FT_ITOA(false));
 	ln = ft_strlen(str);
-	ft_strappend(ret, str, 1, ln);
+	ret = ft_strappend(ret, str, 1, ln);
 	ft_strdel(&str);
 	return (ret);
 }
@@ -103,10 +101,17 @@ char				*print_u(va_list ap, char fg, char *ret)
 		base = 16;
 	uinput = pulludata(ap);
 	if (uinput == 0)
+	{
 		g_flags[4] = false;
+		if (g_prec == 0 || (g_prec == 6 && g_flags[6]))
+		{
+			g_flags[2] = false;
+			return (ret);
+		}
+	}
 	str = (ft_isupper(fg)) ? (FT_UITOA(true)) : (FT_UITOA(false));
 	ln = ft_strlen(str);
-	ft_strappend(ret, str, 1, ln);
+	ret = ft_strappend(ret, str, 1, ln);
 	ft_strdel(&str);
 	return (ret);
 }
@@ -121,7 +126,7 @@ char			*print_s(va_list ap, char fg, char *ret)
 	{
 		str = va_arg(ap, char *);
 		if (str == NULL)
-			str = ft_strappend(str, "(null)", 1, 7);
+			str = ft_strdup("(null)");
 		ln = ft_strlen(str);
 		ret = ft_strappend(ret, str, 1, ln);
 	}
