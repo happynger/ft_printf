@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 16:02:50 by otahirov          #+#    #+#             */
-/*   Updated: 2018/11/25 14:42:43 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 17:31:43 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void					ft_putnbr_fd(long n, int fd);
 /*
 **	STRINGS
 */
+void					ft_strshift(char **str, size_t ln, char c);
 char					*ft_strappend(char *dst, const char *src,
 						size_t dst_len, size_t src_len);
 size_t					ft_strlen(const char *s);

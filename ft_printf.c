@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:08:04 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 16:29:18 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 17:14:17 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,10 @@ int			ft_printf(const char *format, ...)
 	va_list		print;
 
 	va_start(print, format);
-	reset_glob();
+	g_bytes = 0;
 	while (*format)
 	{
+		reset_glob();
 		if (*format == '%')
 			ft_conv(&format, print);
 		else if (*format == '{')
@@ -117,6 +118,6 @@ int			ft_printf(const char *format, ...)
 
 int main()
 {
-	ft_printf("%#.x %#.0x", 0, 0);
+	ft_printf("%-+10.5d", 4242);
 	return 0;
 }

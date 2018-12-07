@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:41:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 13:00:45 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 17:34:49 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static void	field(char **ret, char sign)
 	char	*str;
 	char	*t;
 
+	if (sign && g_flags[0] && !g_flags[2])
+		ft_strshift(ret, 1, '+');
 	ln = (int)ft_strlen(*ret);
 	if (ln > g_field)
 		return ;
@@ -65,8 +67,8 @@ static void	field(char **ret, char sign)
 		t = ft_strjoin(*ret, str);
 	else
 		t = ft_strjoin(str, *ret);
-	if (sign)
-		t[0] = sign;
+	if (sign && g_flags[2])
+		ft_strshift(ret, 1, '+');
 	ft_strdel(&str);
 	ft_strdel(ret);
 	*ret = t;
@@ -107,9 +109,9 @@ void		prec(char **ret)
 
 	if (g_prec == 6)
 		return ;
-	if ((ln = ft_strlen(*ret)) > g_prec)
+	if ((ln = ft_strlen(*ret)) > g_prec && CHAR_F(g_conv))
 		ft_memset(*ret + g_prec, 0, (ln - g_prec));
-	else if (ln < g_prec && g_conv == 'o')
+	else if (ln < g_prec && (INT_F(g_conv) || INT_F2(g_conv)))
 	{
 		t[0] = ft_strnew(g_prec - ln);
 		ft_memset(t[0], '0', (g_prec - ln));

@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:54:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 16:32:07 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 16:50:10 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char				*print_u(va_list ap, char fg, char *ret)
 	uinput = pulludata(ap);
 	if (uinput == 0)
 	{
-		g_flags[4] = false;
+		g_flags[4] = (fg == 'o' && g_flags[4]) ? true : false;
 		if (g_prec == 0 || (g_prec == 6 && g_flags[6]))
 		{
 			g_flags[2] = false;

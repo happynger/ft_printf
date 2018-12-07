@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:07:55 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 15:28:26 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 16:43:46 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define CHK_DGIT(x) (ft_isdigit(**x) && g_flags[6] == true && g_prec == 6)
 # define CHK_FLAGS(r) if (!g_flags[1] && !g_flags[3] && !g_flags[4]) return (r)
 
-# define INIT_FLAGS(x) if (FLAGS(**x)) ft_flags(x)
+# define INIT_FLAGS(x) if (FLAGS(**x) && !g_flags[6]) ft_flags(x)
 # define INIT_VARFIELD(x, ap) else if (**x == '*') g_field = va_arg(ap, int)
 # define INIT_FIELD(x) else if (CHK_DIGIT(x)) multidigitnb(x, true)
 # define INIT_DOT(x) else if (**x == '.') g_flags[6] = true

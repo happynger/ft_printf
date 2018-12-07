@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 16:32:48 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 15:37:40 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/06 16:41:36 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	reset_glob(void)
 	int		i;
 
 	i = 0;
-	g_bytes = 0;
 	g_prec = 6;
 	g_conv = 0;
 	g_field = 0;
