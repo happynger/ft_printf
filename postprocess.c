@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:41:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/10 13:35:31 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/10 15:08:22 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,9 @@ static void	field(char **ret, char sign, char c)
 	}
 	ln = g_field - ln;
 	str = ft_strnew(ft_strlen(t[1]) + ln + 1);
-	str = (char *)ft_memset(str, c, ln);
-	if (g_flags[0])
-		t[0] = ft_strjoin(t[1], str);
-	else
-		t[0] = ft_strjoin(str, t[1]);
+	ft_memset(str, c, ln);
+	PAD_LEFT(t[1], str, t[0]);
+	PAD_RIGHT(t[1], str, t[0]);
 	if (sign && CHK_RESIGN(g_flags) && ft_strchr(t[0], sign) == NULL)
 		t[0][0] = sign;
 	ft_strdel(&str);
@@ -90,14 +88,14 @@ static void	flags(char **ret, char *sign)
 		ADD_N(t[0]);
 	}
 	INIT_TEMP(t[0]);
-	if ((CHK_S) || (g_flags[2] && ft_strchr(*ret, '-') != NULL))
+	if (((CHK_S) || (g_flags[2] && ft_strchr(*ret, '-'))) && (g_conv != 'u'))
 	{
 		ADD_P(t[1], *ret);
 		ADD_S(t[1], *ret);
 		ADD_NE(t[1]);
 	}
 	INIT_TEMP(t[1]);
-	t[2] = (ALLR(g_conv)) ? ft_strcat(*ret, t[0]) : ft_strjoin(t[0], *ret);
+	t[2] = (ALLR(g_conv)) ? ft_strjoin(*ret, t[0]) : ft_strjoin(t[0], *ret);
 	*sign = *t[1];
 	ft_strdel(&t[0]);
 	ft_strdel(&t[1]);

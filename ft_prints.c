@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:54:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/10 13:12:07 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/10 15:03:50 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,12 @@ static uintmax_t	pulludata(va_list ap)
 	return (input);
 }
 
-char				*print_i(va_list ap, char fg, char *ret)
+char				*print_i(va_list ap, char fg)
 {
 	intmax_t	input;
 	uintmax_t	uinput;
 	int			base;
 	char		*str;
-	int			ln;
 
 	base = 10;
 	if (fg == 'b')
@@ -88,7 +87,7 @@ char				*print_i(va_list ap, char fg, char *ret)
 	if ((g_prec == 0 || (g_prec == 6 && g_flags[6])) && input == 0)
 	{
 		g_flags[2] = false;
-		return (ret);
+		return (ft_strnew(1));
 	}
 	if (g_prec != 6 && g_flags[6])
 		g_flags[2] = false;
@@ -100,17 +99,13 @@ char				*print_i(va_list ap, char fg, char *ret)
 	}
 	else
 		str = (ft_isupper(fg)) ? (FT_ITOA(true)) : (FT_ITOA(false));
-	ln = ft_strlen(str);
-	ret = ft_strappend(ret, str, 1, ln);
-	ft_strdel(&str);
-	return (ret);
+	return (str);
 }
 
-char				*print_u(va_list ap, char fg, char *ret)
+char				*print_u(va_list ap, char fg)
 {
 	uintmax_t	uinput;
 	char		*str;
-	int			ln;
 	int			base;
 
 	base = 10;
@@ -125,41 +120,38 @@ char				*print_u(va_list ap, char fg, char *ret)
 		if (g_prec == 0 || (g_prec == 6 && g_flags[6]))
 		{
 			g_flags[2] = false;
-			return (ret);
+			return (ft_strnew(1));
 		}
 	}
 	str = (ft_isupper(fg)) ? (FT_UITOA(true)) : (FT_UITOA(false));
-	ln = ft_strlen(str);
-	ret = ft_strappend(ret, str, 1, ln);
-	ft_strdel(&str);
-	return (ret);
+	return (str);
 }
 
-char			*print_s(va_list ap, char fg, char *ret)
+char			*print_s(va_list ap, char fg)
 {
 	char	*str;
 	char	c;
-	int		ln;
 
 	if (fg == 's')
 	{
 		str = va_arg(ap, char *);
 		if (str == NULL)
 			str = ft_strdup("(null)");
-		ln = ft_strlen(str);
-		ret = ft_strappend(ret, str, 1, ln);
 	}
-	else if (fg == 'c')
+	else
 	{
 		c = va_arg(ap, int);
 		if (c == 0)
 		{
-			ret = ft_strappend(ret, "^@", 1, 2);
+			str = ft_strdup("^@");
 			g_bytes -= 1;
 			g_field += 1;
 		}
 		else
-			ret[0] = c;
+		{
+			str = ft_strnew(1);
+			str[0] = c;
+		}
 	}
-	return (ret);
+	return (str);
 }

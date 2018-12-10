@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 18:47:33 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 15:53:14 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/10 14:56:18 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ static long			afterpointcalc(long double nb)
 	return (ln);
 }
 
-char				*print_f(va_list ap, char fg, char *ret)
+char				*print_f(va_list ap, char fg)
 {
 	int			iin;
 	long double	fin;
+	char		*ret;
 	char		*str[2];
 	long		ln;
 
@@ -70,10 +71,12 @@ char				*print_f(va_list ap, char fg, char *ret)
 	return (ret);
 }
 
-char				*print_m(va_list ap, char fg, char *ret)
+char				*print_m(va_list ap, char fg)
 {
-	int	*in;
+	int		*in;
+	char	*ret;
 
+	ret = ft_strnew(1);
 	if (fg == '%')
 		ret[0] = '%';
 	else if (fg == 'n')
@@ -84,7 +87,7 @@ char				*print_m(va_list ap, char fg, char *ret)
 	return (ret);
 }
 
-char			*print_p(va_list ap, char fg, char *ret)
+char			*print_p(va_list ap, char fg)
 {
 	void		*ptr;
 	char		*str;
@@ -99,8 +102,5 @@ char			*print_p(va_list ap, char fg, char *ret)
 	temp = ft_strjoin("0x", str);
 	ft_strdel(&str);
 	str = temp;
-	nb = ft_strlen(str);
-	ret = ft_strappend(ret, str, 1, nb);
-	ft_strdel(&str);
-	return (ret);
+	return (str);
 }

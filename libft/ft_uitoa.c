@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 18:42:37 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/07 14:45:05 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/10 14:04:03 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char			*ft_uitoa(uintmax_t nb, int base, bool is_cap)
 
 	l = nb;
 	c = (is_cap) ? ('A') : ('a');
-	CHECK_NULL((str = ft_strnew(ft_intlen(l) + 1)));
+	CHECK_NULL((str = ft_strnew(ft_uintlen(l) + 3)));
 	i[0] = ft_logic(str, 0, &l);
 	while (l != 0)
 	{

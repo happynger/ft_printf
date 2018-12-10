@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:07:55 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/10 13:33:42 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/10 14:58:44 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,12 @@
 # define INIT_VARPREC(x, ap) else if (**x == '*') g_prec = va_arg(ap, int)
 # define INIT_PREC(x) else if (CHK_DGIT(x)) multidigitnb(x, false)
 # define INIT_LENMOD(x) else if (LENMOD(**x)) *x += ft_lenmods((char *)*x)
+# define PRINT(x) else g_bytes += ft_putchar(**form)
 # define INIT_CONV(x) if (CONV(**x)) g_conv = **x
 # define INIT_TEMP(t) else t = ft_strdup("")
+
+# define PAD_LEFT(x, y, r) if (g_flags[0]) r = ft_strjoin(x, y)
+# define PAD_RIGHT(x, y, r) else r = ft_strjoin(y, x)
 
 # define ADD_O(t) if (g_conv == 'o') t = ft_strdup("0")
 # define ADD_XS(t) else if (g_conv == 'x' && !g_flags[2]) t = ft_strdup("0x")
@@ -69,12 +73,12 @@ void						reset_glob(void);
 /*
 **	OUTPUTS
 */
-char						*print_p(va_list ap, char fg, char *ret);
-char						*print_u(va_list ap, char fg, char *ret);
-char						*print_i(va_list ap, char fg, char *ret);
-char						*print_s(va_list ap, char fg, char *ret);
-char						*print_f(va_list ap, char fg, char *ret);
-char						*print_m(va_list ap, char fg, char *ret);
+char						*print_p(va_list ap, char fg);
+char						*print_u(va_list ap, char fg);
+char						*print_i(va_list ap, char fg);
+char						*print_s(va_list ap, char fg);
+char						*print_f(va_list ap, char fg);
+char						*print_m(va_list ap, char fg);
 
 # define G_LENMOD 7
 # define G_FLAGS 7

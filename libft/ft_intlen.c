@@ -6,13 +6,13 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 19:05:17 by otahirov          #+#    #+#             */
-/*   Updated: 2018/09/14 19:44:25 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/10 14:02:46 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_intlen(long nb)
+size_t	ft_intlen(intmax_t nb)
 {
 	size_t	len;
 

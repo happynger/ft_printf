@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:08:04 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/10 13:36:35 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/10 15:02:25 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,7 @@ static void	multidigitnb(const char **form, bool isfield)
 static void	ft_conv(const char **form, va_list ap)
 {
 	size_t	ln;
-	char	*ret;
 
-	ln = 0;
-	ret = ft_strnew(1);
 	*form += 1;
 	while (**form && !CONV(**form))
 	{
@@ -82,6 +79,7 @@ static void	ft_conv(const char **form, va_list ap)
 		INIT_VARPREC(form, ap);
 		INIT_PREC(form);
 		INIT_LENMOD(form);
+		PRINT(form);
 		*form += 1;
 	}
 	ln = 0;
@@ -89,7 +87,7 @@ static void	ft_conv(const char **form, va_list ap)
 	if (CONV(**form))
 		while (ln < TABLE_SIZE)
 			if (g_table[ln++].flag == **form)
-				post(g_table[ln - 1].func(ap, **form, ret));
+				post(g_table[ln - 1].func(ap, **form));
 }
 
 /*
@@ -112,6 +110,8 @@ int			ft_printf(const char *format, ...)
 			format += color(format);
 		else
 			g_bytes += ft_putchar(*format);
+		if (*format == '\0')
+			break ;
 		format++;
 	}
 	va_end(print);
@@ -120,5 +120,5 @@ int			ft_printf(const char *format, ...)
 
 /* int main()
 {
-	ft_printf("% u", 4294967295);
+	ft_printf("%");
 } */
