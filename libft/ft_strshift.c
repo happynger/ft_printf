@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/06 17:26:06 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/07 12:07:42 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/07 15:16:01 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_strshift(char **str, size_t ln, char c)
 		return ;
 	t = ft_strnew(ft_strlen(*str) + ln);
 	ft_memset(t, c, ln);
-	ft_memcpy(t + 1, *str, ft_strlen(*str));
+	ft_memcpy(t + ln, *str, ft_strlen(*str));
 	ft_strdel(str);
 	*str = t;
 }

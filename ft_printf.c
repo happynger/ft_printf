@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:08:04 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/07 14:15:10 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/10 13:36:35 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static int	ft_lenmods(char *form)
 		g_lenmod[4] = true;
 	else if (*form == 'j')
 		g_lenmod[5] = true;
+	else if (*form == 'z')
+		g_lenmod[6] = true;
 	return (0);
 }
 
@@ -118,6 +120,5 @@ int			ft_printf(const char *format, ...)
 
 /* int main()
 {
-	ft_printf("%-05d", -42);
-	return 0;
+	ft_printf("% u", 4294967295);
 } */

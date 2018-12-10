@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 16:32:48 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/06 16:41:36 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/07 15:25:49 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ bool						g_flags[] =
 **	lenmod # 3 : 'hh'
 **	lenmod # 4 : 'L'
 **	lenmod # 5 : 'j'
+**	lenmod # 6 : 'z'
 */
 
 bool						g_lenmod[] =
 {
+	false,
 	false,
 	false,
 	false,

@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 18:07:55 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/07 14:13:21 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/10 13:33:42 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 # include "libft/includes/libft.h"
 # include "structs.h"
 
-# define INT_F(x) (x == 'i' || x == 'd' || x == 'o')
-# define INT_F2(x) (x == 'x' || x == 'X' || x == 'u')
+# define INT_F(x) (x == 'i' || x == 'd' || x == 'o' || x == 'u')
+# define INT_F2(x) (x == 'x' || x == 'X')
 # define CHAR_F(x) (x == 'c' || x == 's')
 # define REAL_F(x) (x == 'f')
 # define MISC_F(x) (x == 'n' || x == 'p' || x == 'F' || x == 'b' || x == '%')
 # define CONV(x) (INT_F(x) || INT_F2(x) || CHAR_F(x) || REAL_F(x) || MISC_F(x))
 # define FLAGS(x) (x == '-' || x == '+' || x == ' ' || x == '0' || x == '#')
-# define LENMD(x) (x == 'l' || x == 'h' || x == 'L')
+# define LENMD(x) (x == 'l' || x == 'h' || x == 'L' || x == 'z')
 # define LENMOD(x) (LENMD(x) || x == 'j')
 # define ALLR(x) ((REAL_F(x) || x == 'F') && g_prec == 0)
-# define NEG(x, i) ((ft_atoi(x) >= 0) && g_flags[i])
+# define NEG(x, i) ((ft_atol(x) >= 0) && g_flags[i])
 
 # define CHK_DIGIT(x) (ft_isdigit(**x) && g_flags[6] == false && g_field == 0)
 # define CHK_DGIT(x) (ft_isdigit(**x) && g_flags[6] == true && g_prec == 6)
@@ -35,7 +35,7 @@
 # define CHK_SIGN(f) (f[0] || (f[3] && !f[2]) || (f[1] && !f[2]))
 # define CHK_RESIGN(f) (!f[0] && (f[2] || f[1]))
 # define CHK_S (!CHAR_F(g_conv) && g_conv != '%') && (g_flags[1] || g_flags[3])
-# define CHK_FIELD(r) ((int)ft_strlen(*r) < g_field && ft_strchr(*r, sign))
+# define CHK_FIELD(r) ((int)ft_strlen(r) < g_field && ft_strchr(r, sign))
 
 # define INIT_FLAGS(x) if (FLAGS(**x) && !g_flags[6]) ft_flags(x)
 # define INIT_VARFIELD(x, ap) else if (**x == '*') g_field = va_arg(ap, int)
@@ -48,8 +48,8 @@
 # define INIT_TEMP(t) else t = ft_strdup("")
 
 # define ADD_O(t) if (g_conv == 'o') t = ft_strdup("0")
-# define ADD_XS(t) else if (g_conv == 'x') t = ft_strdup("0x")
-# define ADD_X(t) else if (g_conv == 'X') t = ft_strdup("0X")
+# define ADD_XS(t) else if (g_conv == 'x' && !g_flags[2]) t = ft_strdup("0x")
+# define ADD_X(t) else if (g_conv == 'X' && !g_flags[2]) t = ft_strdup("0X")
 # define ADD_F(t) else if (ALLR(g_conv)) t = ft_strdup(".")
 # define ADD_N(t) else t = ft_strdup("")
 # define ADD_P(t, r) if (NEG(r, 1)) t = ft_strdup("+")
@@ -76,7 +76,7 @@ char						*print_s(va_list ap, char fg, char *ret);
 char						*print_f(va_list ap, char fg, char *ret);
 char						*print_m(va_list ap, char fg, char *ret);
 
-# define G_LENMOD 6
+# define G_LENMOD 7
 # define G_FLAGS 7
 
 extern bool				g_flags[];
