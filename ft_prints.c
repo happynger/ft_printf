@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 11:54:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/10 15:03:50 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/11 13:39:53 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,7 @@ char			*print_s(va_list ap, char fg)
 	if (fg == 's')
 	{
 		str = va_arg(ap, char *);
-		if (str == NULL)
-			str = ft_strdup("(null)");
+		str = (str == NULL) ? (ft_strdup("(null)")) : (ft_strdup(str));
 	}
 	else
 	{

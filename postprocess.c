@@ -6,7 +6,7 @@
 /*   By: otahirov <otahirov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:41:30 by otahirov          #+#    #+#             */
-/*   Updated: 2018/12/10 15:08:22 by otahirov         ###   ########.fr       */
+/*   Updated: 2018/12/11 14:14:44 by otahirov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	field(char **ret, char sign, char c)
 
 	t[1] = *ret;
 	if (sign && CHK_SIGN(g_flags) && ft_strchr(t[1], sign) == NULL)
-		ft_strshift(&t[1], 1, sign);
+		*ret = ft_strshift(&t[1], 1, sign);
 	if (sign && CHK_FIELD(t[1]) && g_flags[2] && !g_flags[0])
 		t[1]++;
 	ln = (int)ft_strlen(t[1]);
@@ -72,6 +72,7 @@ static void	field(char **ret, char sign, char c)
 	if (sign && CHK_RESIGN(g_flags) && ft_strchr(t[0], sign) == NULL)
 		t[0][0] = sign;
 	ft_strdel(&str);
+	ft_strdel(ret);
 	*ret = t[0];
 }
 
@@ -152,4 +153,5 @@ void		post(char *ret)
 		(g_flags > 0) ? (ret[g_field] = '\0') : (ret[0] = '0');
 	}
 	g_bytes += ft_putstr(ret);
+	ft_strdel(&ret);
 }
